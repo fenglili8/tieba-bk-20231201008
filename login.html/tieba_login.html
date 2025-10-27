@@ -1,0 +1,142 @@
+<!DOCTYPE html> 
+ <html lang="zh-CN"> 
+ <head> 
+     <meta charset="UTF-8"> 
+     <title>百度贴吧 - 登录</title> 
+     <style> 
+         /* 全局基础样式 */ 
+         * { margin: 0; padding: 0; box-sizing: border-box; } 
+         body { 
+             height: 100vh; 
+             display: flex; 
+             align-items: center; 
+             justify-content: center; 
+             background: #f5f5f5; 
+             font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif; 
+         } 
+ 
+         /* 登录卡片 */ 
+         .login-card { 
+             width: 360px; 
+             padding: 40px 32px 32px; 
+             background: #fff; 
+             border-radius: 8px; 
+             box-shadow: 0 2px 12px rgba(0,0,0,.08); 
+             text-align: center; 
+         } 
+ 
+         /* Logo 区域 */ 
+         .logo { 
+             width: 120px; 
+             height: auto; 
+             margin: 0 auto 24px; 
+             display: block; 
+         } 
+ 
+         /* 标题 */ 
+         h2 { 
+             font-size: 20px; 
+             color: #333; 
+             margin-bottom: 24px; 
+             font-weight: 500; 
+         } 
+ 
+         /* 输入框 */ 
+         .input-group { 
+             margin-bottom: 16px; 
+             text-align: left; 
+         } 
+         .input-group label { 
+             font-size: 14px; 
+             color: #666; 
+             margin-bottom: 6px; 
+             display: block; 
+         } 
+         .input-group input { 
+             width: 100%; 
+             height: 40px; 
+             padding: 0 12px; 
+             border: 1px solid #e0e0e0; 
+             border-radius: 4px; 
+             font-size: 14px; 
+             transition: border-color .2s; 
+         } 
+         .input-group input:focus { 
+             border-color: #3064f2; 
+             outline: none; 
+         } 
+ 
+         /* 登录按钮 */ 
+         .btn-login { 
+             width: 100%; 
+             height: 40px; 
+             margin-top: 8px; 
+             background: #3064f2; 
+             color: #fff; 
+             border: none; 
+             border-radius: 4px; 
+             font-size: 15px; 
+             cursor: pointer; 
+             transition: background .2s; 
+         } 
+         .btn-login:hover { background: #2858d8; } 
+ 
+         /* 底部链接 */ 
+         .footer-links { 
+             margin-top: 20px; 
+             font-size: 13px; 
+             color: #999; 
+         } 
+         .footer-links a { 
+             color: #3064f2; 
+             text-decoration: none; 
+             margin: 0 6px; 
+         } 
+         .footer-links a:hover { text-decoration: underline; } 
+     </style> 
+ </head> 
+ <body> 
+     <div class="login-card"> 
+         <!-- 百度贴吧 Logo -->
+        <img src="image.png" alt="百度贴吧" class="logo"> 
+ 
+         <h2>登录百度贴吧</h2> 
+ 
+         <form id="loginForm" action="#" method="post"> 
+             <div class="input-group"> 
+                 <label for="username">用户名 / 手机号</label> 
+                 <input type="text" id="username" name="username" placeholder="请输入用户名或手机号" required> 
+             </div> 
+
+             <div class="input-group"> 
+                 <label for="password">密码</label> 
+                 <input type="password" id="password" name="password" placeholder="请输入密码" required> 
+             </div> 
+
+             <button type="submit" class="btn-login">登 录</button> 
+         </form> 
+
+         <div class="footer-links"> 
+             <a href="#">立即注册</a> | 
+             <a href="#">忘记密码？</a> 
+         </div> 
+     </div> 
+
+     <script>
+         document.getElementById('loginForm').addEventListener('submit', function(e) {
+             e.preventDefault();
+             
+             const username = document.getElementById('username').value;
+             const password = document.getElementById('password').value;
+             
+             // 简单的验证（实际应用中应该发送到服务器验证）
+             if (username && password) {
+                 // 登录成功，跳转到用户中心页面，并传递用户名参数
+                 window.location.href = '../web1.html/user_center.html?username=' + encodeURIComponent(username);
+             } else {
+                 alert('请输入用户名和密码');
+             }
+         });
+     </script> 
+ </body> 
+ </html>

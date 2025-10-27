@@ -1,0 +1,136 @@
+<!DOCTYPE html> 
+<html lang="zh-CN"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>百度贴吧 - 用户中心</title> 
+    <style> 
+        *{margin:0;padding:0;box-sizing:border-box} 
+        body{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;background:#f5f5f5;color:#333} 
+        a{color:#3064f2;text-decoration:none} 
+        /* 顶部导航链接 */ 
+        .nav-links{display:flex;gap:66.7px;justify-content:center} 
+        .nav-links a{color:#333;text-decoration:underline;font-size:21px} 
+        /* 顶部导航 */ 
+        .header{height:200px;background:#fff;border-bottom:1px solid #e0e0e0;display:flex;flex-direction:column;padding:0 24px} 
+        .header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px} 
+        .header-bottom{display:flex;justify-content:center} 
+        .header .logo{height:128px}
+        .placeholder{
+            width:128px;
+            height:128px
+        } 
+        /* 搜索区 */ 
+        .search-box{flex:1;display:flex;align-items:center;max-width:534px;margin:0 auto;background:#f2f2f2;border-radius:20px;padding:0 12px} 
+        .search-box img{width:20px;height:20px;margin-right:8px} 
+        .search-box input{flex:1;border:none;background:transparent;outline:none;height:36px;font-size:14px} 
+        /* 用户中心 */ 
+        .container{width:960px;margin:32px auto} 
+        .user-profile{background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.05);padding:24px;margin-bottom:24px} 
+        .user-info{display:flex;align-items:center;margin-bottom:20px} 
+        .avatar{width:80px;height:80px;border-radius:50%;background:#f0f0f0;margin-right:20px} 
+        .user-details h2{font-size:20px;margin-bottom:8px} 
+        .user-details p{color:#666;font-size:14px} 
+        .user-stats{display:flex;gap:40px;margin-top:20px} 
+        .stat-item{text-align:center} 
+        .stat-number{font-size:24px;font-weight:500;margin-bottom:4px} 
+        .stat-label{font-size:14px;color:#666} 
+        .user-menu{background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.05);padding:24px} 
+        .menu-item{display:flex;align-items:center;padding:12px 0;border-bottom:1px solid #f0f0f0} 
+        .menu-item:last-child{border-bottom:none} 
+        .menu-icon{width:24px;height:24px;margin-right:16px} 
+        .menu-text{font-size:16px} 
+        .logout-btn{display:block;width:100%;height:40px;background:#3064f2;color:#fff;border:none;border-radius:4px;font-size:15px;cursor:pointer;margin-top:20px;transition:background .2s} 
+        .logout-btn:hover{background:#2858d8} 
+    </style> 
+</head> 
+<body> 
+    <!-- 顶部导航 --> 
+    <header class="header"> 
+        <div class="header-top">
+            <img src="image.png" alt="百度贴吧" class="logo"> 
+            <div class="nav-links">
+                <a href="index.html">网页</a>
+                <a href="#">个人账户</a>
+            </div>
+            <div class="placeholder"></div>
+        </div>
+        <div class="header-bottom">
+            <div class="search-box"> 
+                <img src="search.png" alt="搜索"> 
+                <input type="text" placeholder="搜贴吧、搜帖子"> 
+            </div> 
+        </div>
+    </header> 
+
+    <!-- 用户中心 --> 
+    <div class="container"> 
+        <div class="user-profile"> 
+            <div class="user-info"> 
+                <div class="avatar"></div> 
+                <div class="user-details"> 
+                    <h2 id="username">用户名</h2> 
+                    <p>欢迎来到百度贴吧！</p> 
+                </div> 
+            </div> 
+            <div class="user-stats"> 
+                <div class="stat-item"> 
+                    <div class="stat-number">0</div> 
+                    <div class="stat-label">关注</div> 
+                </div> 
+                <div class="stat-item"> 
+                    <div class="stat-number">0</div> 
+                    <div class="stat-label">粉丝</div> 
+                </div> 
+                <div class="stat-item"> 
+                    <div class="stat-number">0</div> 
+                    <div class="stat-label">帖子</div> 
+                </div> 
+            </div> 
+        </div> 
+
+        <div class="user-menu"> 
+            <div class="menu-item"> 
+                <div class="menu-icon">📝</div> 
+                <div class="menu-text">我的帖子</div> 
+            </div> 
+            <div class="menu-item"> 
+                <div class="menu-icon">⭐</div> 
+                <div class="menu-text">我的收藏</div> 
+            </div> 
+            <div class="menu-item"> 
+                <div class="menu-icon">💬</div> 
+                <div class="menu-text">消息通知</div> 
+            </div> 
+            <div class="menu-item"> 
+                <div class="menu-icon">⚙️</div> 
+                <div class="menu-text">账号设置</div> 
+            </div> 
+            <button class="logout-btn" id="logoutBtn">退出登录</button> 
+        </div> 
+    </div> 
+
+    <script>
+        // 获取URL参数中的用户名
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // 显示用户名
+        document.addEventListener('DOMContentLoaded', function() {
+            const username = getUrlParameter('username');
+            if (username) {
+                document.getElementById('username').textContent = username;
+            }
+
+            // 退出登录按钮点击事件
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                // 返回登录页面
+                window.location.href = '../login.html/tieba_login.html';
+            });
+        });
+    </script>
+</body> 
+</html>
